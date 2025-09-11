@@ -15,7 +15,7 @@
 
 ### [句式与句子结构](2.0句式与句子结构.md)
 
-- [Ja -- Nein -- Doch](2.Ja -- Nein -- Doch.md)
+- [Ja -- Nein -- Doch](<2.Ja -- Nein -- Doch.md>)
 
 - [命令式](2.命令式.md)
 
