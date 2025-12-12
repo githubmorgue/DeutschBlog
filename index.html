@@ -40,18 +40,27 @@
     }
   /* 引用块样式 */
   .markdown-section blockquote {
-    font-size: 14px;   /* 比正文小 */
-    font-weight: lighter; /* 更细的文字 */
-    color: #555;       /* 更浅的颜色 */
-    padding: 10px 20px;
+    font-size: 0.9em; /* 稍微小一点 */
+    font-weight: lighter; /* 更细 */
+    color: #444; /* 比正文颜色稍微浅一点 */
     margin: 0;
-    background: #f9f9f9; /* 可选：轻微的背景颜色变化 */
-    border-left: 4px solid #ddd; /* 可选：左侧边框 */
+    padding-left: 1em;
+    border-left: 4px solid #ddd;
   }
-  /* 特别针对中文内容引用块样式 */
-  .markdown-section blockquote p:lang(zh) {
-    font-size: 0.875em; /* 对于中文内容，字体再小一点 */
-    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', serif; /* 设置适合中文的字体 */
+
+  /* 引用块内的列表项 */
+  .markdown-section blockquote > ul > li,
+  .markdown-section blockquote > ol > li {
+    font-size: 1em; /* 与正文相同大小 */
+    font-weight: normal; /* 与正文相同粗细 */
+    color: #1a1a1a; /* 与正文相同颜色 */
+  }
+
+  /* 强制所有引用块内的 p 元素遵循上述规则 */
+  .markdown-section blockquote p {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
   }
   </style>
 
