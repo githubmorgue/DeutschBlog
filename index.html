@@ -48,10 +48,10 @@
     background: #f9f9f9; /* 可选：轻微的背景颜色变化 */
     border-left: 4px solid #ddd; /* 可选：左侧边框 */
   }
-  /* 如果需要进一步区分中英文样式 */
-  .markdown-section blockquote p {
-    margin: 0;
-    line-height: 1.6;
+  /* 特别针对中文内容引用块样式 */
+  .markdown-section blockquote p:lang(zh) {
+    font-size: 0.875em; /* 对于中文内容，字体再小一点 */
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', serif; /* 设置适合中文的字体 */
   }
   </style>
 
