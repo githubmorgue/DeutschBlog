@@ -61,6 +61,7 @@
             // 也可以处理 inline 行内（更彻底）
             const originalText = marked.Renderer.prototype.text;
             marked.Renderer.prototype.text = function(text) {
+              console.log("📝 正在处理 Markdown 内容");
               return originalText.call(this, text.replace(/==([^=]+?)==/g, '<mark>$1</mark>'));
             };
           }
