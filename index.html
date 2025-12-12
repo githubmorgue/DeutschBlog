@@ -46,13 +46,31 @@
     window.$docsify = {
 
       markdown: {
-        beforeEach: function(content) {
-          console.log("📝 正在处理 Markdown 内容");
-          // 将 ==text== 转换为 <mark>text</mark>
-          return content
-            .replace(/(^|[^=])==([^=\n].*?[^=\n])==($|[^=])/g, '$1<mark>$2</mark>$3')
-            .replace(/^==([^=\n].*?[^=\n])==$/gm, '<mark>$1</mark>');
-        }
+          // ✅ 使用 renderer 自定义 marked
+          renderer: function(marked) {
+            // 保存原始的 paragraph 方法
+            const originalParagraph = marked.Renderer.prototype.paragraph;
+
+            // 重写 paragraph 方法，在渲染段落前替换 ==...==
+            marked.Renderer.prototype.paragraph = function(text) {
+              // 将 ==xxx== 替换为 <mark>xxx</mark>
+              text = text.replace(/==([^=]+?)==/g, '<mark>$1</mark>');
+              return originalParagraph.call(this, text);
+            };
+
+            // 也可以处理 inline 行内（更彻底）
+            const originalText = marked.Renderer.prototype.text;
+            marked.Renderer.prototype.text = function(text) {
+              return originalText.call(this, text.replace(/==([^=]+?)==/g, '<mark>$1</mark>'));
+            };
+          }
+        // beforeEach: function(content) {
+        //   console.log("📝 正在处理 Markdown 内容");
+        //   // 将 ==text== 转换为 <mark>text</mark>
+        //   return content
+        //     .replace(/(^|[^=])==([^=\n].*?[^=\n])==($|[^=])/g, '$1<mark>$2</mark>$3')
+        //     .replace(/^==([^=\n].*?[^=\n])==$/gm, '<mark>$1</mark>');
+        // }
       },
 
       count: {
