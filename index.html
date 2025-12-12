@@ -28,13 +28,30 @@
 
   <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
   
-
+  <style>
+  .markdown-section mark {
+    background-color: #cce6ff; /* 浅蓝色背景 */
+    padding: 0 4px;
+    border-radius: 3px;
+    color: inherit;
+  }
+  </style>
 
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.$docsify = {
+      
+      markdown: {
+        beforeEach: function(content) {
+          // 将 ==text== 转换为 <mark>text</mark>
+          return content
+            .replace(/(^|[^=])==([^=\n].*?[^=\n])==($|[^=])/g, '$1<mark>$2</mark>$3')
+            .replace(/^==([^=\n].*?[^=\n])==$/gm, '<mark>$1</mark>');
+        }
+      },
+
       count: {
         language: "chinese", // default:english|chinese
       },
