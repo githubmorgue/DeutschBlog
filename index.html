@@ -100,6 +100,13 @@
             while(el.hasChildNodes()) el.removeChild(el.firstChild)
             gitalk.render('gitalk-container')
           })
+        },
+        function(hook, vm) {
+          console.log("✅ $docsify 插件已加载！");
+          hook.beforeEach(function(content) {
+            console.log("📝 正在处理 Markdown 内容");
+            return content.replace(/==([^=]+)==/g, '<mark>$1</mark>');
+          });
         }
       ],
     }
