@@ -45,28 +45,14 @@
 
     window.$docsify = {
 
-        markdown: {
-          renderer: function(marked) {
-            console.log('/renderer marked:', marked);
-            // 兼容处理：有些版本 marked 是函数，有些是对象
-            const _marked = typeof marked === 'function' ? marked : marked.marked;
-
-            const renderer = new _marked.Renderer();
-
-            // 重写段落渲染
-            renderer.paragraph = function(text) {
-              text = text.replace(/==([^=]+?)==/g, '<mark>$1</mark>');
-              return `<p>${text}</p>`;
-            };
-
-            // 重写纯文本渲染（用于行内）
-            renderer.text = function(text) {
-              return text.replace(/==([^=]+?)==/g, '<mark>$1</mark>');
-            };
-
-            return renderer;
-          }
-        },
+      markdown: {
+        beforeEach: function(content) {
+          // 将 ==text== 转换为 <mark>text</mark>
+          console.log("📝 正在处理 Markdown 内容");
+          return content
+            .replace(/(^|[^=])==([^=\n].*?[^=\n])==($|[^=])/g, '$1<mark>$2</mark>$3')
+            .replace(/^==([^=\n].*?[^=\n])==$/gm, '<mark>$1</mark>');
+        }
       },
 
       count: {
