@@ -38,29 +38,23 @@
       color: #1a1a1a !important;    /* 字迹更深（接近纯黑但柔和） */
       line-height: 1.7 !important;  /* 行距更舒适 */
     }
-  /* 引用块样式 */
+  /* 引用块统一样式：更细、稍小、颜色稍浅 */
   .markdown-section blockquote {
-    font-size: 0.9em; /* 稍微小一点 */
-    font-weight: lighter; /* 更细 */
-    color: #444; /* 比正文颜色稍微浅一点 */
-    margin: 0;
-    padding-left: 1em;
-    border-left: 4px solid #ddd;
+    font-size: 0.92em !important;     /* 比正文略小 */
+    font-weight: 300 !important;      /* 更细（normal 是 400，lighter 可能太弱）*/
+    color: #555 !important;           /* 比正文 #1a1a1a 稍浅，但不灰暗 */
+    border-left: 3px solid #ddd !important;
+    padding-left: 1em !important;
+    margin: 1em 0 !important;
   }
 
-  /* 引用块内的列表项 */
-  .markdown-section blockquote > ul > li,
-  .markdown-section blockquote > ol > li {
-    font-size: 1em; /* 与正文相同大小 */
-    font-weight: normal; /* 与正文相同粗细 */
-    color: #1a1a1a; /* 与正文相同颜色 */
-  }
-
-  /* 强制所有引用块内的 p 元素遵循上述规则 */
-  .markdown-section blockquote p {
-    font-size: inherit;
-    font-weight: inherit;
-    color: inherit;
+  /* 确保引用块内的所有子元素（包括 p、ul、li）继承样式 */
+  .markdown-section blockquote *,
+  .markdown-section blockquote *::before,
+  .markdown-section blockquote *::after {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
   }
   </style>
 
