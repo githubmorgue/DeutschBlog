@@ -29,8 +29,20 @@
   <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
   
   <style>
+    /* 调整 Docsify 正文默认文字 */
+    .markdown-section,
+    .markdown-section p,
+    .markdown-section li,
+    .markdown-section div:not([class]) {
+      font-size: 19px !important;   /* 字体更大 */
+      color: #1a1a1a !important;    /* 字迹更深（接近纯黑但柔和） */
+      line-height: 1.7 !important;  /* 行距更舒适 */
+    }
+  </style>
+
+  <style>
   .markdown-section mark {
-    background-color: #3adc93; 
+    background-color: #FFEDCC; 
     padding: 0 4px;
     border-radius: 3px;
     color: inherit;
@@ -50,7 +62,7 @@
       loadSidebar: true,
       // loadSidebar: false,
       subMaxLevel: 2,
-      themeColor: '#3adc93',
+      themeColor: '#FFEDCC',
       auto2top: true,
       pagination: {
             previousText: "上一章",
