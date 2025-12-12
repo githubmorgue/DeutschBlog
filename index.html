@@ -41,10 +41,13 @@
 <body>
   <div id="app"></div>
   <script>
+    console.log("✅ $docsify 配置已加载！");
+
     window.$docsify = {
 
       markdown: {
         beforeEach: function(content) {
+          console.log("📝 正在处理 Markdown 内容");
           // 将 ==text== 转换为 <mark>text</mark>
           return content
             .replace(/(^|[^=])==([^=\n].*?[^=\n])==($|[^=])/g, '$1<mark>$2</mark>$3')
