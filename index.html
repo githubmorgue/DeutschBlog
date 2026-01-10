@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>德语学习</title>
@@ -37,12 +37,7 @@
   </script>
   
   <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
-  <style>
-      /* 允许单词内断句，首先会尝试挪到下一行，看看下一行的宽度够不够，
-      不够的话就进行单词内的断句 */
-      .breakword{word-wrap: break-word;}
-      hyphens: auto;  /* 启用连字符断词（需配合 lang="de"）*/
-  </style>
+
   <style>
     /* 调整 Docsify 正文默认文字 */
     .markdown-section,
@@ -81,6 +76,24 @@
     color: inherit;
   }
   </style>
+
+   <!-- 德语长句自动换行 -->
+   <style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 100%;
+        overflow-x: hidden;  /* 防止水平滚动条 */
+    }
+    .long-text {
+        lang: "de";           /* 语言声明 */
+        hyphens: auto;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        /* padding: 20px;
+        border: 1px solid #ccc;  可视化测试 */
+    }
+   </style>
+
 
 </head>
 <body>
