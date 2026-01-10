@@ -84,8 +84,8 @@
    }
    .long-text {
        hyphens: auto;
-      /* 断句时，不会把长单词挪到下一行，而是直接进行单词内的断句 */
-      word-break:break-all;     
+       word-break: normal;        /* 默认换行行为 */    
+       overflow-wrap: break-word; /* 允许在长单词内换行 */
    }
    </style>
 
