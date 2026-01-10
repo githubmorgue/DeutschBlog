@@ -37,7 +37,11 @@
   </script>
   
   <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
-  
+  <style>
+      /* 允许单词内断句，首先会尝试挪到下一行，看看下一行的宽度够不够，
+      不够的话就进行单词内的断句 */
+      .breakword{word-wrap: break-word;}
+  </style>
   <style>
     /* 调整 Docsify 正文默认文字 */
     .markdown-section,
