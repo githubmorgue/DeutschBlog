@@ -80,17 +80,12 @@
    <!-- 德语长句自动换行 -->
    <style>
    body {
-       /* font-family: Arial, sans-serif; */
        max-width: 100%;
-       /* overflow-x: hidden;  防止水平滚动条 */
    }
    .long-text {
-       /* lang: "de"; */           /* 语言声明 */
        hyphens: auto;
-       overflow-wrap: break-word;
-       word-break: break-word;
-       /* padding: 20px; */
-       /* border: 1px solid #ccc;   可视化测试 */
+      /* 允许单词内断句，首先会尝试挪到下一行，看看下一行的宽度够不够，不够的话就进行单词内的断句 */
+       word-wrap: break-word;
    }
    </style>
 
