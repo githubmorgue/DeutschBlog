@@ -84,8 +84,8 @@
    }
    .long-text {
        hyphens: auto;
-      /* 允许单词内断句，首先会尝试挪到下一行，看看下一行的宽度够不够，不够的话就进行单词内的断句 */
-       word-wrap: break-word;
+      /* 断句时，不会把长单词挪到下一行，而是直接进行单词内的断句 */
+      word-break:break-all;     
    }
    </style>
 
