@@ -78,21 +78,11 @@
   </style>
   
   <style>
-    /* Obsidian 风格的标签样式 */
-    .obsidian-tag {
-      display: inline-block;
-      padding: 0 0.4em;
-      margin: 0 0.2em;
-      background-color: rgba(0, 0, 0, 0.05);
-      border-radius: 0.4em;
-      font-size: 0.85em;
-      color: #444;
-      text-decoration: none !important;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      transition: background-color 0.2s;
-    }
-    .obsidian-tag:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+    /* 标签样式 */
+    .docsify-tag {
+      color: #FFEDCC;
+      text-decoration: none;
+      border-bottom: 1px dashed #FFEDCC;
       cursor: pointer;
     }
   </style>
@@ -158,44 +148,6 @@
     }
   </script>
 
-  <script>
-    // Docsify 插件：将 #标签 转换为可点击的标签元素
-    $docsify.plugins = [].concat(function(hook, vm) {
-      hook.doneEach(function() {
-        const content = document.querySelector('.markdown-section');
-        if (!content) return;
-
-        // 匹配形如 #中文、#English、#tag123 的标签（避免匹配 # 标题）
-        // 注意：不能匹配行首的 #（那是标题），也不能匹配 URL 中的 #
-        const tagRegex = /(^|[^#\w\u4e00-\u9fa5])(#[\w\u4e00-\u9fa5]+)/g;
-
-        let html = content.innerHTML;
-        let match;
-        let lastIndex = 0;
-        let result = '';
-
-        // 使用 replace 更安全
-        content.innerHTML = html.replace(tagRegex, function(fullMatch, prefix, tag) {
-          // 防止重复包裹（如果已经转成 a 标签就跳过）
-          if (fullMatch.includes('href')) return fullMatch;
-
-          const tagName = tag.slice(1); // 去掉 #
-          const tagLink = `<a href="javascript:void(0)" class="obsidian-tag" data-tag="${tagName}">${tag}</a>`;
-          return prefix + tagLink;
-        });
-
-        // 可选：点击标签时跳转到标签页（或搜索）
-        content.querySelectorAll('.obsidian-tag').forEach(tagEl => {
-          tagEl.addEventListener('click', function(e) {
-            const tag = this.getAttribute('data-tag');
-            alert(`你点击了标签：#${tag}\n你可以在这里实现跳转到 /tags/?tag=${tag}`);
-            // 例如：window.location.href = '/tags/?tag=' + encodeURIComponent(tag);
-          });
-        });
-      });
-    }, $docsify.plugins || []);
-  </script>
-
   <!-- 主程序 -->
   <script src="js/docsify.min.js"></script>
   <!-- <script src="//cdn.jsdelivr.net/npm/docsify@4"></script> -->
@@ -203,6 +155,9 @@
   <!-- 搜索插件 -->
   <script src="js/search.min.js"></script>
   <!-- <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script> -->
+  
+  <!-- 引入自定义标签搜索插件 -->
+  <script src="docsify-tag-search.js"></script>
 
   <!-- 分页插件 -->
   <script src="js/docsify-pagination.min.js"></script>
