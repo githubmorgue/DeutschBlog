@@ -20,10 +20,14 @@
         }
       });
       
-      // 劫持搜索输入
+      // 保存原始 oninput（如果有的话）
       const originalOnInput = input.oninput;
+      
+      // 重写 oninput 事件处理程序，不覆盖默认行为
       input.oninput = function (e) {
         const query = this.value.trim();
+        
+        // 如果是标签搜索
         if (query.startsWith('#')) {
           const tagName = query.slice(1);
           if (!tagName) {
@@ -37,6 +41,7 @@
           for (const [name, pages] of allTags.entries()) {
             if (name.includes(tagName)) {
               pages.forEach(p => {
+                // 去重
                 if (!matchedPages.some(m => m.path === p.path)) {
                   matchedPages.push(p);
                 }
@@ -52,8 +57,11 @@
               .join('');
           }
         } else if (originalOnInput) {
-          // 非标签查询：恢复默认行为
+          // 非标签查询：调用 Docsify 的默认搜索处理
           originalOnInput.call(this, e);
+        } else {
+          // 如果没有原始 handler，清空结果（让默认搜索接管）
+          resultsContainer.innerHTML = '';
         }
       };
     } else {
