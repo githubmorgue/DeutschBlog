@@ -53,7 +53,7 @@
     font-size: 0.92em !important;     /* 比正文略小 */
     font-weight: 300 !important;      /* 更细（normal 是 400，lighter 可能太弱）*/
     color: #555 !important;           /* 比正文 #1a1a1a 稍浅，但不灰暗 */
-    border-left: 3px solid #edae37 !important;
+    border-left: 3px solid #FFEDCC !important;
     padding-left: 1em !important;
     margin: 1em 0 !important;
   }
@@ -77,6 +77,26 @@
   }
   </style>
   
+  <style>
+    /* Obsidian 风格的标签样式 */
+    .obsidian-tag {
+      display: inline-block;
+      padding: 0 0.4em;
+      margin: 0 0.2em;
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 0.4em;
+      font-size: 0.85em;
+      color: #444;
+      text-decoration: none !important;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: background-color 0.2s;
+    }
+    .obsidian-tag:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+  </style>
+
 </head>
 <body>
   <div id="app"></div>
@@ -136,6 +156,44 @@
         }
       ],
     }
+  </script>
+
+  <script>
+    // Docsify 插件：将 #标签 转换为可点击的标签元素
+    $docsify.plugins = [].concat(function(hook, vm) {
+      hook.doneEach(function() {
+        const content = document.querySelector('.markdown-section');
+        if (!content) return;
+
+        // 匹配形如 #中文、#English、#tag123 的标签（避免匹配 # 标题）
+        // 注意：不能匹配行首的 #（那是标题），也不能匹配 URL 中的 #
+        const tagRegex = /(^|[^#\w\u4e00-\u9fa5])(#[\w\u4e00-\u9fa5]+)/g;
+
+        let html = content.innerHTML;
+        let match;
+        let lastIndex = 0;
+        let result = '';
+
+        // 使用 replace 更安全
+        content.innerHTML = html.replace(tagRegex, function(fullMatch, prefix, tag) {
+          // 防止重复包裹（如果已经转成 a 标签就跳过）
+          if (fullMatch.includes('href')) return fullMatch;
+
+          const tagName = tag.slice(1); // 去掉 #
+          const tagLink = `<a href="javascript:void(0)" class="obsidian-tag" data-tag="${tagName}">${tag}</a>`;
+          return prefix + tagLink;
+        });
+
+        // 可选：点击标签时跳转到标签页（或搜索）
+        content.querySelectorAll('.obsidian-tag').forEach(tagEl => {
+          tagEl.addEventListener('click', function(e) {
+            const tag = this.getAttribute('data-tag');
+            alert(`你点击了标签：#${tag}\n你可以在这里实现跳转到 /tags/?tag=${tag}`);
+            // 例如：window.location.href = '/tags/?tag=' + encodeURIComponent(tag);
+          });
+        });
+      });
+    }, $docsify.plugins || []);
   </script>
 
   <!-- 主程序 -->
