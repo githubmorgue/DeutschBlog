@@ -65,7 +65,9 @@
         }
       };
     } else {
-      setTimeout(waitForSearch, 300);
+      // 1. 将等待时间从 300ms 增加到 1000ms
+      // 2. 确保有足够时间等待 search.min.js 初始化
+      setTimeout(waitForSearch, 2000);
     }
   }
   
