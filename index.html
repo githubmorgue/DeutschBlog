@@ -151,6 +151,17 @@
     }
   </script>
 
+  <script>
+  window.$docsify = {
+    // 其他配置...
+    afterEach: function(html, next) {
+      console.log('✅ afterEach 被调用了！当前 HTML 长度:', html.length);
+      // 简单替换测试：把所有 #test 替换成红色文字
+      const newHtml = html.replace(/#test/g, '<span style="color:red">#test</span>');
+      next(newHtml);
+    }
+  };
+  </script>
   
   <!-- 引入自定义标签搜索插件 -->
   <script src="docsify-tag-search.js"></script>
