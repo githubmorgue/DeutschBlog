@@ -94,9 +94,6 @@
 <body>
   <div id="app"></div>
 
-  <script src="docsify-tag-search.js"></script>
-  <script src="docsify-tag-search-dom.js"></script>
-
   <script>
     window.$docsify = {
       count: {
@@ -109,7 +106,6 @@
       subMaxLevel: 2,
       themeColor: '#edae37',
       auto2top: true,
-      afterEach: createTagAfterEachHook(),
       pagination: {
             previousText: "上一章",
             nextText: "下一章",
@@ -168,12 +164,10 @@
 
   <!-- 引入自定义标签搜索插件 -->
   <script src="docsify-tag-search.js"></script>
+  <script src="docsify-tag-search-dom.js"></script>
 
   <!-- 分页插件 -->
   <script src="js/docsify-pagination.min.js"></script>
-
-  <!-- 加载 DOM 交互部分（在 Docsify 之后） -->
-  <script src="docsify-tag-search-dom.js"></script>
 
   <!-- Gitalk -->
   <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script> 
