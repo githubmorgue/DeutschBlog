@@ -155,7 +155,7 @@
             const anchor = parts.length > 1 ? parts[1] : '';
 
             // 生成 href 中的 d 参数：将空格替换为 -
-            const dParam = anchor.replace(/\s+/g, '-');
+            const dParam = anchor.replace(/\s+/g, '');
 
             // 构造 href
             const href = `#/` + encodeURIComponent(page) + (anchor ? `?d=${encodeURIComponent(dParam)}` : '');
