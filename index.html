@@ -172,7 +172,7 @@
 
               const dParam = window.$docsify.slugify(anchor);
               // const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${dParam}` : '');
-              const href = `#/` + encodeURIComponent(page) + (anchor ? `?d=${encodeURIComponent(anchor)}` : '');
+              const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${encodeURIComponent(anchor)}` : '');
               return `<a href="${href}">${displayText}</a>`;
             });
           });
