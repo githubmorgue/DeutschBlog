@@ -168,8 +168,8 @@
               const anchor = parts.length > 1 ? parts[1] : '';
 
               const dParam = window.$docsify.slugify(anchor);
-              
-              const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${encodeURIComponent(anchor)}` : '');
+
+              const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${encodeURIComponent(dParam)}` : '');
               return `<a href="${href}">${displayText}</a>`;
             });
           });
