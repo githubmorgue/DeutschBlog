@@ -111,14 +111,11 @@
       },
       // 自定义 slugify 函数
       slugify: function(str) {
-        // 1. 将所有非字母数字字符替换为连字符（包括空格）
-        // 2. 合并多个连续连字符为单个连字符
-        // 3. 移除开头和结尾的连字符
         return str
-          .replace(/[^a-z0-9]/g, '-')
-          .toLowerCase()
-          .replace(/-+/g, '-')
-          .replace(/^-+|-+$/g, '');
+          .toLowerCase()  // 将整个字符串转为小写（中文不受影响，英文转小写）
+          .replace(/\s+/g, '-')  // 替换所有空白字符为连字符
+          .replace(/-+/g, '-')   // 合并连续连字符
+          .replace(/^-+|-+$/g, ''); // 移除开头和结尾的连字符
       },
       plugins: [
         function pageFooter(hook, vm) {
@@ -171,7 +168,6 @@
               const anchor = parts.length > 1 ? parts[1] : '';
 
               const dParam = window.$docsify.slugify(anchor);
-              // const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${dParam}` : '');
               const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${encodeURIComponent(anchor)}` : '');
               return `<a href="${href}">${displayText}</a>`;
             });
