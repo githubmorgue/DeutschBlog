@@ -171,8 +171,8 @@
               const anchor = parts.length > 1 ? parts[1] : '';
 
               const dParam = window.$docsify.slugify(anchor);
-              const href = `#/` + encodeURIComponent(page) + (anchor ? `?d=${dParam}` : '');
-
+              // const href = `#/` + encodeURIComponent(page) + (anchor ? `?id=${dParam}` : '');
+              const href = `#/` + encodeURIComponent(page) + (anchor ? `?d=${encodeURIComponent(anchor)}` : '');
               return `<a href="${href}">${displayText}</a>`;
             });
           });
