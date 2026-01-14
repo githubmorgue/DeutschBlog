@@ -158,7 +158,11 @@
          },
         // 将 [[页面#标题]] 转为 <a> 标签
         function parseDoubleBrackets(text) {
-          return text.replace(/\[\[([^\]]+?)\]\]/g, (match, content) => {
+            if (typeof text !== 'string') {
+              return text;
+            }
+            
+            return text.replace(/\[\[([^\]]+?)\]\]/g, (match, content) => {
             // 拆分页面名和锚点（如果有 #）
             const parts = content.split('#');
             const page = parts[0]; // 页面名，如 "5.模块9积累"
