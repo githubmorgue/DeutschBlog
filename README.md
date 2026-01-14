@@ -11,10 +11,3 @@
 
 [序言](preface.md)
 
-TODO测试：- [[6.问题积累#zu与zum表目的]]
-
-TODO测试：- [[5.模块9积累#第04讲 - 反身动词]]
-
-TODO测试：- [[5.模块9积累#第07讲 - Das Deutsche Schulsystem]]
-
-TODO测试：- [[5.模块9积累#第05讲 - wenn、als、wann和ob引导的从句]]
